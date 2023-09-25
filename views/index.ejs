@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bisection Method</title>
+    <link rel="stylesheet" type="text/css" href="/style.css">
+
+</head>
+ <body background="img/PO6cjaY.jpg">
+
+    <h1>Bisection Method</h1>
+    
+    <form id="bisectionForm" action="/calculate-bisection" method="post">
+        <label for="expression">Enter Expression (e.g., x^2 - 4):</label>
+        <input type="text" id="expression" name="expression" required><br><br>
+        <label for="a">Initial Value a:</label>
+        <input type="number" id="a" name="a" required><br><br>
+        <label for="b">Initial Value b:</label>
+        <input type="number" id="b" name="b" required><br><br>
+        <label for="tolerance">Tolerance:</label>
+        <input type="number" id="tolerance" name="tolerance" step="0.00001" min="0" max="1" required /><br><br>
+        <input type="submit" value="Calculate">
+    </form>
+    
+
+    <h2>Iterations:</h2>
+    <table border="1">
+        <tr>
+            <th>Iteration</th>
+            <th>a</th>
+            <th>b</th>
+            <th>f(a)</th>
+            <th>f(b)</th>
+            <th>x</th>
+            <th>f(x)</th>
+        </tr>
+        <% iterations.forEach(iteration => { %>
+            <tr>
+                <td><%= iteration.iteration %></td>
+                <td><%= iteration.a %></td>
+                <td><%= iteration.b %></td>
+                <td><%= iteration.fa %></td>
+                <td><%= iteration.fb %></td>
+                <td><%= iteration.x %></td>
+                <td><%= iteration.fx %></td>
+            </tr>
+        <% }); %>
+    </table>
+
+    <h2>Root:</h2>
+    <% if (root !== null) { %>
+        <p>The root is: <%= root %></p>
+    <% } else { %>
+        <p>No root found within the specified tolerance.</p>
+    <% } %>
+    <form action="/" method="get">
+        <input type="submit" value="Reset" />
+    </form>
+    <script>
+    </script>
+</body>
+</html>
